@@ -1,0 +1,22 @@
+
+
+// Configure the test task
+test {
+    // Specify the directory containing test classes
+    testClassesDirs = sourceSets.test.output.classesDirs
+
+    // Optionally configure test options
+    testLogging {
+        // Configure which events to log during test execution
+        events 'passed', 'skipped', 'failed'
+    }
+    finalizedBy jacocoTestReport
+}
+
+jacocoTestReport {
+    dependsOn test
+    reports {
+        xml.required = true
+        html.required = true
+    }
+}
